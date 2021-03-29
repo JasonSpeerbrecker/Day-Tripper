@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trip Buddy Dashboard</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+  </head>
+  <body>
+    <header>
+      <nav class="top-nav">
+        <div>
+          <h1 class="title">Hello {{this_user.first_name}}!</h1>
+        </div>
+        <div>
+          <a href="/logout">Log Out</a>
+          <a class="button" href="/trips/new">Create a new trip!</a>
+        </div>
+      </nav>
+    </header>
+    <div class="row-container">
+      <div class="my-col">
+        <h1>Your trips:</h1>
+        <table class="tab">
+          <thead>
+            <tr>
+              <th>Destination</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Plan</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for trips in this_user.trips_created.all %}
+            <tr>
+              <td><a href="/trips/{{trips.id}}">{{trips.destination}}</a></td>
+              <td>{{trips.start_date}}</td>
+              <td>{{trips.end_date}}</td>
+              <td>{{trips.plan}}</td>
+              <td>
+                <a href="/trips/remove/{{trips.id}}">Remove</a> |
+                <a href="/trips/edit/{{trips.id}}">Edit</a>
+              </td>
+            </tr>
+            {% endfor %}
+            <!--  -->
+            {% for trips in all_trips %}
+            <!--  -->
+            {% if this_user in trips.joined.all %}
+            <tr>
+              <td><a href="/trips/{{trips.id}}">{{trips.destination}}</a></td>
+              <td>{{trips.start_date}}</td>
+              <td>{{trips.end_date}}</td>
+              <td>{{trips.plan}}</td>
+              <td>
+                <a href="/trips/cancel/{{trips.id}}">Cancel</a>
+              </td>
+            </tr>
+            {% endif %}
+            <!--  -->
+            {% endfor %}
+          </tbody>
+        </table>
+        <h1>Other people's trips:</h1>
+        <table class="tab tab2">
+          <thead>
+            <tr>
+              <th>Destination</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Plan</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for trips in all_trips %}
+            <!--  -->
+            {% if this_user != trips.creator %}
+            <!--  -->
+            {% if this_user not in trips.joined.all %}
+            <tr>
+              <td><a href="/trips/{{trips.id}}">{{trips.destination}}</a></td>
+              <td>{{trips.start_date}}</td>
+              <td>{{trips.end_date}}</td>
+              <td>{{trips.plan}}</td>
+              <td>
+                <a href="/trips/join/{{trips.id}}">Join</a>
+              </td>
+            </tr>
+            {% endif %}
+            <!--  -->
+            {% endif %}
+            <!--  -->
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
