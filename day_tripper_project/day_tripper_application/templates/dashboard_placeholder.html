@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Placeholder</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+  </head>
+  <body>
+    <div class="row-container">
+      <div class="my-col">
+        <div>
+          <a class="test-but" href="/logout">Log Out</a>
+        </div>
+        <br />
+        <br />
+        <div>
+          <a class="test-but" href="/my_trips">My Trips</a>
+        </div>
+        <br />
+        <br />
+        <div>
+          <a class="test-but" href="/dashboard">Home</a>
+        </div>
+        <br />
+        <br />
+        <div>
+          <a class="test-but" href="/new">New Trip</a>
+        </div>
+        <br />
+        <br />
+        <div>
+          <a class="test-but" href="/new_trail">New Trail</a>
+        </div>
+      </div>
+    </div>
+    <div class="row-container">
+      <div class="my-col">
+        {% for trail in all_trails %}
+        <p>{{trail.name}}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

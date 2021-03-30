@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Trip</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+  </head>
+  <body>
+    <header>
+      <nav class="top-nav test-nav">
+        <div>
+          <h1 class="title">Hello {{this_user.first_name}}! Create a trip!</h1>
+        </div>
+        <div>
+          <a href="/logout">Log Out</a>
+        </div>
+      </nav>
+    </header>
+    <div class="row-container">
+      <div class="my-col">
+        <h3>Recommended Food</h3>
+        <textarea cols="30" rows="10">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti debitis voluptas sequi tenetur temporibus consequatur eius nulla nihil sapiente sed iusto exercitationem, ipsum, explicabo ipsa voluptate quisquam facere cum asperiores!
+        </textarea>
+        <h3>Recommended Gear</h3>
+        <textarea cols="30" rows="10">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum hic nobis at exercitationem quod autem, incidunt est! Pariatur cupiditate, veritatis nostrum saepe maxime ad laudantium blanditiis iste consequatur ex facilis.
+        </textarea>
+      </div>
+      <div class="my-col">
+        <!-- <div class="error-box">
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}" {% endif %}>
+              {{ message }}
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div> -->
+        <form action="/create" method="POST">
+          {% csrf_token %}
+          <div class="form-format form-test">
+            <label for="trail">Select a Trail</label>
+            <select name="trail" id="trail">
+              {% for trail in all_trails %}
+              <option value="{{trail.id}}">{{trail.name}}</option>
+              {% endfor %}
+            </select>
+            <label for="trip_date">Trip Date</label>
+            <input id="trip_date" type="date" name="trip_date" />
+            <label for="food_list">Food List</label>
+            <textarea
+              id="food_list"
+              name="food_list"
+              cols="30"
+              rows="7"
+            ></textarea>
+            <label for="gear_check">Gear Check</label>
+            <textarea
+              id="gear_check"
+              name="gear_check"
+              cols="30"
+              rows="7"
+            ></textarea>
+          </div>
+          <a href="/my_trips" class="test-but">Cancel</a>
+          <button class="test-but" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
