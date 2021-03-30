@@ -9,15 +9,66 @@ def index(request):
         return redirect('/success')
     return render(request, "index.html")
 
-def success(request):
-    if 'user_id' not in request.session:
-        return redirect('/')
-    context = {
-        'this_user': User.objects.get(id=request.session['user_id'])
-    }
-    return render(request, "success.html", context)
+#def display_dashboard(request):
+    # if 'user_id' not in request.session:
+    #     return redirect('/')
+    # context = {
+    #     'this_user': User.objects.get(id=request.session['user_id'])
+    # }
+    # return render(request, "dashboard.html", context)
+
+#def display_trails_details(request, id):
+    # if 'user_id' not in request.session:
+    #     return redirect('/')
+    # context = {
+    #   'this_user': User.objects.get(id=request.session['user_id'])
+    #   'this_trail': Trail.objects.get(id=id)
+    # }
+    #return render(request, "detail.html", context)
+
+#def display_my_trips(request):
+    # if 'user_id' not in request.session:
+    #     return redirect('/')
+    # context = {
+    #     'this_user': User.objects.get(id=request.session['user_id'])
+    # }
+    # return render(request, "my_trips.html", context)
+
+#def display_make_new_trip(request):
+    # if 'user_id' not in request.session:
+    #     return redirect('/')
+    # context = {
+    #     'this_user': User.objects.get(id=request.session['user_id'])
+    # }
+    # return render(request, "create_trip.html", context)
 
 ###########################################  Action Methods  ###########################################
+
+#def create(request):
+    user = User.objects.get(id=request.session['user_id'])
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+#       #need a hidden input on form for this so we can get id for the page this is from
+# def post_comment(request, id):
+#     post_user = User.objects.get(id=request.session['user_id'])
+#     new_comment = Comment.objects.create(
+#         user = post_user,
+#         comment = request.POST['comment']
+#     )
+#     return redirect('/')
+
 def register(request):
     # Validations
     errors = User.objects.reg_validator(request.POST)
