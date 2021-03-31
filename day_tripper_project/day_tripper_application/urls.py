@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.index),
     path('dashboard', views.display_dashboard),
     path('trip/new', views.display_make_new_trip),
-    # path('trip/detail/<int:id>', views.trip_detail),
+    path('trip/detail/<int:id>', views.display_trip_details),
     path('trip/my_trips', views.display_my_trips),
     path('trip/update/<int:id>', views.display_update_trip),
     path('trail/detail/<int:id>', views.display_trail_details),

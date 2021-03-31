@@ -61,6 +61,15 @@ def display_update_trip(request, id):
     }
     return render(request, "update_trip.html", context)
 
+# single trip details
+def display_trip_details(request, id):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    context = {
+      'this_user': User.objects.get(id=request.session['user_id']),
+      'this_trip': Trip.objects.get(id=id)
+    }
+    return render(request, "trip_details_placeholder.html", context)
 ###########################################  Action Methods  ###########################################
 
 # Logic to create trip

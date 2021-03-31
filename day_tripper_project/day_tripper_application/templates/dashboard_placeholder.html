@@ -43,5 +43,21 @@
         {% endfor %}
       </div>
     </div>
+    <div class="row-container">
+      <div class="my-col">
+        <h1>trips I created</h1>
+        {% for trip in this_user.trips_created.all%}
+        <a href="/trip/detail/{{trip.id}}">{{trip.trip_name}}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row-container">
+      <div class="my-col">
+        <h1>trips I joined</h1>
+        {% for trip in this_user.trips_joined.all%}
+        <a href="/trip/detail/{{trip.id}}">{{trip.name}}</a>
+        {% endfor %}
+      </div>
+    </div>
   </body>
 </html>
