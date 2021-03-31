@@ -15,5 +15,44 @@
     <div>
       <a class="test-but" href="/dashboard">Home</a>
     </div>
+    <br />
+    <h1>{{this_trail.name}}</h1>
+    <br />
+    <h1>{{this_trail.location}}</h1>
+    <br />
+    <h1>{{this_trail.difficulty}}</h1>
+    <br />
+    <h1>Comments:</h1>
+    <br />
+    {% for comment in this_trail.trail_comments.all%}
+    <h1>{{comment.comment}}</h1>
+    {% endfor %}
+    <br />
+    <br />
+    <br />
+    <textarea id="weather-box" cols="45" rows="10">
+      Todays Weather:
+      Location: {{response.name}}
+      General Weather: {{response.weather.0.main}} - {{response.weather.0.description}}
+      Temperature: {{response.main.temp}}F
+      Feels Like: {{response.main.feels_like}}F
+      Min: {{response.main.temp_min}}F
+      Max: {{response.main.temp_max}}F
+      Humidity: {{response.main.humidity}}%
+  </textarea
+    >
+    <form action="/post_comment/{{this_trail.id}}" method="POST">
+      {% csrf_token %}
+      <div class="form-format">
+        <label for="comment">Post a Comment</label>
+        <textarea
+          id="comment"
+          name="comment"
+          rows="8"
+          placeholder="comment"
+        ></textarea>
+      </div>
+      <button class="button" type="submit">Post a Comment</button>
+    </form>
   </body>
 </html>

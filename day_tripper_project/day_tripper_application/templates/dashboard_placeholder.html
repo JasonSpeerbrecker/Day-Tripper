@@ -34,6 +34,11 @@
         <div>
           <a class="test-but" href="/new_trail">New Trail</a>
         </div>
+        <br />
+        <br />
+        <div>
+          <a class="test-but" href="/test">test</a>
+        </div>
       </div>
     </div>
     <div class="row-container">
@@ -48,6 +53,12 @@
         <h1>trips I created</h1>
         {% for trip in this_user.trips_created.all%}
         <a href="/trip/detail/{{trip.id}}">{{trip.trip_name}}</a>
+        {% for trail in trip.trails.all%}
+        <p>{{trail.name}}</p>
+        <br />
+        <br />
+        {% endfor %}
+        <!--  -->
         {% endfor %}
       </div>
     </div>
@@ -55,7 +66,7 @@
       <div class="my-col">
         <h1>trips I joined</h1>
         {% for trip in this_user.trips_joined.all%}
-        <a href="/trip/detail/{{trip.id}}">{{trip.name}}</a>
+        <a href="/trip/detail/{{trip.id}}">{{trip.trip_name}}</a>
         {% endfor %}
       </div>
     </div>

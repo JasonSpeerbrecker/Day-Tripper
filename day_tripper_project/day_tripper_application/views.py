@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import User, Trail, Trip
+from .models import User, Trail, Trip, Comment
 from django.contrib import messages
 import bcrypt
+import requests
 
-###########################################  Display Methods  ###########################################
+########  Display Methods  #############################
 
 # Login/Reg Page
 def index(request):
@@ -17,7 +18,7 @@ def display_dashboard(request):
         return redirect('/')
     context = {
         'this_user': User.objects.get(id=request.session['user_id']),
-        'all_trails': Trail.objects.all()
+        'all_trails': Trail.objects.all(),
     }
     return render(request, "dashboard_placeholder.html", context)
 
@@ -27,7 +28,8 @@ def display_trail_details(request, id):
         return redirect('/')
     context = {
       'this_user': User.objects.get(id=request.session['user_id']),
-      'this_trail': Trail.objects.get(id=id)
+      'this_trail': Trail.objects.get(id=id),
+    #    'response': requests.get(f'http://api.openweathermap.org/data/2.5/weather?q={Trail.objects.get(id=id).location}&units=imperial&appid=8b49594cf60552b6f4ea62debd425645').json()
     }
     return render(request, "trail_details_placeholder.html", context)
 
@@ -70,17 +72,17 @@ def display_trip_details(request, id):
       'this_trip': Trip.objects.get(id=id)
     }
     return render(request, "trip_details_placeholder.html", context)
-###########################################  Action Methods  ###########################################
+######  Action Methods  ################################
 
 # Logic to create trip
 def create(request):
     user = User.objects.get(id=request.session['user_id'])
     add_trail = Trail.objects.get(id=request.POST['trail'])
-    # errors = Trip.objects.trip_validator(request.POST)
-    # if len(errors) > 0:
-    #     for key, value in errors.items():
-    #         messages.error(request, value)
-    #     return redirect('/trip/new')
+    errors = Trip.objects.trip_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/trip/new')
     new_trip = Trip.objects.create(
         trip_name = request.POST['trip_name'],
         trip_date = request.POST['trip_date'],
@@ -93,11 +95,11 @@ def create(request):
 
 # Logic to update trip
 def update_trip(request, id):
-    # errors = Trip.objects.trip_validator(request.POST)
-    # if len(errors) > 0:
-    #     for key, value in errors.items():
-    #         messages.error(request, value)
-    #     return redirect(f'/trip/edit/{id}')
+    errors = Trip.objects.trip_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect(f'/trip/update/{id}')
     this_trip = Trip.objects.get(id=id)
     this_trail = Trail.objects.get(id=request.POST['trail'])
     if request.POST['trip_name'] != this_trip.trip_name:
@@ -118,36 +120,34 @@ def update_trip(request, id):
     return redirect('/trip/my_trips')
 # 
 # Logic to cancel(un-join) someone elses trip (does not delete the trip)
-# def cancel(request, id):
-#     remove_trip = Trip.objects.get(id=id)
-#     remove_user = request.session['user_id']
-#     remove_trip.joined.remove(remove_user)
-#     return redirect('/trip/my_trips')
+def cancel(request, id):
+    remove_trip = Trip.objects.get(id=id)
+    remove_user = request.session['user_id']
+    remove_trip.joined.remove(remove_user)
+    return redirect('/trip/my_trips')
 
 # Logic to join someone elses trip
-# def join(request, id):
-#     join_trip = Trip.objects.get(id=id)
-#     join_user = request.session['user_id']
-#     join_trip.joined.add(join_user)
-#     return redirect('/trip/my_trips')
+def join(request, id):
+    join_trip = Trip.objects.get(id=id)
+    join_user = request.session['user_id']
+    join_trip.joined.add(join_user)
+    return redirect('/trip/my_trips')
 
 # Logic to delete a trip (can only delete trips you created)
-# def remove(request, id):
-#     trip_delete = Trip.objects.get(id=id).delete()
-#     return redirect('/trip/my_trips')
-# 
-# 
-# 
-# 
-# 
-#       #need a hidden input on form for this so we can get id for the page this is from
-# def post_comment(request, id):
-#     post_user = User.objects.get(id=request.session['user_id'])
-#     new_comment = Comment.objects.create(
-#         user = post_user,
-#         comment = request.POST['comment']
-#     )
-#     return redirect(f'/trail/detail/{id}')
+def remove(request, id):
+    trip_delete = Trip.objects.get(id=id).delete()
+    return redirect('/trip/my_trips')
+
+# Logic to comment on a trail page
+def post_comment(request, id):
+    post_user = User.objects.get(id=request.session['user_id'])
+    post_trail = Trail.objects.get(id=id)
+    new_comment = Comment.objects.create(
+        user = post_user,
+        trail = post_trail,
+        comment = request.POST['comment']
+    )
+    return redirect(f'/trail/detail/{id}')
 
 def register(request):
     # Validations
@@ -197,7 +197,7 @@ def logout(request):
     return redirect('/')
 
 
-#################### admin methods ###############################
+########### admin methods ###############################
 def display_make_new_trail(request):
     if 'user_id' not in request.session:
         return redirect('/')
@@ -208,11 +208,11 @@ def display_make_new_trail(request):
 
 def create_trail(request):
     user = User.objects.get(id=request.session['user_id'])
-    # errors = Trip.objects.trip_validator(request.POST)
-    # if len(errors) > 0:
-    #     for key, value in errors.items():
-    #         messages.error(request, value)
-    #     return redirect('/new')
+    errors = Trail.objects.trail_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/new')
     new_trail = Trail.objects.create(
         name = request.POST['name'],
         location = request.POST['location'],

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Placeholder</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+  </head>
+  <body>
+    {{response}} {{response.description}}
+    <br /><br /><br /><br />
+    <textarea id="weather-box" cols="45" rows="10">
+        Todays Weather:
+        Location: {{response.name}}
+        General Weather: {{response.weather.0.main}} - {{response.weather.0.description}}
+        Temperature: {{response.main.temp}}F
+        Feels Like: {{response.main.feels_like}}F
+        Min: {{response.main.temp_min}}F
+        Max: {{response.main.temp_max}}F
+        Humidity: {{response.main.humidity}}%
+    </textarea>
+  </body>
+</html>

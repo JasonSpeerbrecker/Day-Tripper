@@ -21,7 +21,7 @@
     </header>
     <div class="row-container">
       <div class="my-col">
-        <!-- <div class="error-box">
+        <div class="error-box">
           {% if messages %}
           <ul class="messages">
             {% for message in messages %}
@@ -31,7 +31,7 @@
             {% endfor %}
           </ul>
           {% endif %}
-        </div> -->
+        </div>
         <form action="/create_trail" method="POST">
           {% csrf_token %}
           <div class="form-format form-test">
