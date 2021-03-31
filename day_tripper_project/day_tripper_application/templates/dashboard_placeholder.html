@@ -17,7 +17,7 @@
         <br />
         <br />
         <div>
-          <a class="test-but" href="/my_trips">My Trips</a>
+          <a class="test-but" href="/trip/my_trips">My Trips</a>
         </div>
         <br />
         <br />
@@ -27,7 +27,7 @@
         <br />
         <br />
         <div>
-          <a class="test-but" href="/new">New Trip</a>
+          <a class="test-but" href="/trip/new">New Trip</a>
         </div>
         <br />
         <br />
@@ -39,7 +39,7 @@
     <div class="row-container">
       <div class="my-col">
         {% for trail in all_trails %}
-        <p>{{trail.name}}</p>
+        <a href="/trail/detail/{{trail.id}}">{{trail.name}}</a>
         {% endfor %}
       </div>
     </div>

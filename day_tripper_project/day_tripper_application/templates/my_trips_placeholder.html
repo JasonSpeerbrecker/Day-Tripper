@@ -5,14 +5,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Trails</title>
+    <title>My Trips</title>
     <link rel="stylesheet" href="{% static '/css/style.css' %}" />
   </head>
   <body>
-    <h1>YOU MADE IT TO MY TRAILS PAGE</h1>
+    <h1>YOU MADE IT TO MY TRIPS PAGE</h1>
     <h1>Congrats... now make the page look right</h1>
     <div class="row-container">
-      <div class="my-col"></div>
+      <div class="my-col">
+        {% for trip in this_user.trips_created.all%}
+        <p>{{trip.trip_name}}</p>
+        {% endfor %}
+      </div>
     </div>
     <div>
       <a class="test-but" href="/dashboard">Home</a>

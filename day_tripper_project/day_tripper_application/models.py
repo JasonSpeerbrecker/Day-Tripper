@@ -46,6 +46,7 @@ class Trail(models.Model):
     #objects = TrailManager()
 
 class Trip(models.Model):
+    trip_name = models.CharField(max_length=255)
     trip_date = models.DateField()
     food_list = models.TextField()
     gear_check = models.TextField()
