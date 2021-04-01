@@ -30,7 +30,7 @@ def display_trail_details(request, id):
     context = {
       'this_user': User.objects.get(id=request.session['user_id']),
       'this_trail': Trail.objects.get(id=id),
-    #    'response': requests.get(f'http://api.openweathermap.org/data/2.5/weather?q={Trail.objects.get(id=id).location}&units=imperial&appid=8b49594cf60552b6f4ea62debd425645').json()
+       'response': requests.get(f'http://api.openweathermap.org/data/2.5/weather?q={Trail.objects.get(id=id).location}&units=imperial&appid=8b49594cf60552b6f4ea62debd425645').json()
     }
     return render(request, "trail_details_placeholder.html", context)
 
@@ -136,12 +136,17 @@ def join(request, id):
     return redirect('/trip/my_trips')
 
 # Logic to delete a trip (can only delete trips you created)
-def remove(request, id):
+def delete_trip(request, id):
     trip_delete = Trip.objects.get(id=id).delete()
-    return redirect('/trip/my_trips')
+    return redirect('/dashboard')
 
 # Logic to comment on a trail page
 def post_comment(request, id):
+    errors = Comment.objects.comment_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect(f'/trail/detail/{id}')
     post_user = User.objects.get(id=request.session['user_id'])
     post_trail = Trail.objects.get(id=id)
     new_comment = Comment.objects.create(
@@ -238,4 +243,16 @@ def update_trail(request):
 def delete_trail(request, id):
     delete_trail = Trail.objects.get(id=id)
     delete_trail.delete()
+    return redirect('/dashboard')
+
+def delete_all(request, id):
+    this_trail = Trail.objects.get(id=id)
+    for comment in this_trail.trail_comments.all():
+        comment.delete()
+    return redirect(f'/trail/detail/{id}')
+
+def delete_all_trails(request):
+    all_trails = Trail.objects.all()
+    for trail in all_trails:
+        trail.delete()
     return redirect('/dashboard')

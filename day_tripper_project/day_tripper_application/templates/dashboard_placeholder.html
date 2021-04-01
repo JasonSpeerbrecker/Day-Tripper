@@ -17,7 +17,6 @@
         <span style="color: #738042">Welcome, {{ this_user.first_name }}</span>
       </h1>
       <a class="test-but" href="/dashboard">Home</a>
-      <a class="test-but" href="/trip/my_trips">My Trips</a>
       <a class="test-but" href="/trip/new">New Trip</a>
       <a class="test-but" href="/new_trail">New Trail</a>
       <a class="test-but" href="/logout">Log Out</a>
@@ -79,12 +78,16 @@
               <td>{{trip.trip_date}}</td>
               <td>{{trip.food_list}}</td>
               <td>{{trip.gear_check}}</td>
-              <td><a href="/trip/detail/{{trip.id}}"> View </a></td>
+              <td>
+                <a href="/trip/detail/{{trip.id}}"> View </a> |
+                <a href="/trip/delete/{{trip.id}}"> Delete </a>
+              </td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
     </div>
+    <a href="/delete_all_trails">delete all trails</a>
   </body>
 </html>

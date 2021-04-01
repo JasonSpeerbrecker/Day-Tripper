@@ -55,11 +55,12 @@ class TripManager(models.Manager):
             return errors
         return errors
 
-class Comment(models.Manager):
+class CommentManager(models.Manager):
     def comment_validator(self, postData):
         errors = {}
         if len(postData['comment']) < 2:
             errors['comment'] = "Comments must be more than 2 characters!"
+        return errors
 
 # models
 class User(models.Model):
@@ -102,3 +103,4 @@ class Comment(models.Model):
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = CommentManager()

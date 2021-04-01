@@ -24,32 +24,72 @@
       <a class="test-but" href="/logout">Log Out</a>
     </header>
 
-    <!-- <div class="ddb bgd ttm"> -->
-    <div class="bgd ttm">
-      <h1>Trail: {{this_trail.name}}</h1>
-    </div>
+    <div class="row-container">
+      <div class="my-col">
+        <textarea id="weather-box" cols="30" rows="9">
+          Todays Weather:
+          Location: {{response.name}}
+          General Weather: {{response.weather.0.description}}
+          Temperature: {{response.main.temp}}F
+          Feels Like: {{response.main.feels_like}}F
+          Min: {{response.main.temp_min}}F
+          Max: {{response.main.temp_max}}F
+          Humidity: {{response.main.humidity}}%
+      </textarea
+        >
+      </div>
+      <div class="my-col">
+        <div class="cent">
+          <div class="bgd">
+            <h1>Trail: {{this_trail.name}}</h1>
+          </div>
 
-    <!-- Trail Details with the Trail Description Box-->
-    <div class="bgd">
-      <p>Location: {{this_trail.location}}</p>
-      <p>Difficulty: {{this_trail.difficulty}}</p>
-      <p>Distance: {{this_trail.distance}}</p>
-      <p>Elevation Gain {{this_trail.elevation_change}}</p>
-      <p>Route Type: {{this_trail.route_type}}</p>
-      <p>Rating {{this_trail.rating}}</p>
-    </div>
+          <!-- Trail Details with the Trail Description Box-->
+          <div class="bgd">
+            <p>Location: {{this_trail.location}}</p>
+            <p>Difficulty: {{this_trail.difficulty}}</p>
+            <p>Distance: {{this_trail.distance}}</p>
+            <p>Elevation Gain {{this_trail.elevation_change}}</p>
+            <p>Route Type: {{this_trail.route_type}}</p>
+            <p>Rating {{this_trail.rating}}</p>
+          </div>
 
-    <!-- Trail Description Box -->
-    <div class="tdb">
-      <p>{{this_trail.description}}</p>
-    </div>
+          <!-- Trail Description Box -->
+          <div class="bgd">
+            <p>{{this_trail.description}}</p>
+          </div>
 
+          {% for comment in this_trail.trail_comments.all %}
+          <div>
+            <textarea class="comms" cols="60" rows="3">
+              {{comment.user.first_name}} {{comment.user.last_name}} {{comment.created_at}} &#013;&#010;
+    {{comment.comment}}}</textarea
+            >
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
     <!-- Comment Box -->
+    <div class="error-box-comment">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>
+          {{ message }}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
     <div class="cbf">
-      <form class="my-col" action="/post_comment/{{message.id}}" method="POST">
+      <form
+        class="my-col"
+        action="/post_comment/{{this_trail.id}}"
+        method="POST"
+      >
         {% csrf_token %}
-        <input type="hidden" name="thisUser_id" value="{{thisUser.id}}" />
-        <textarea name="comment" cols="135" rows="10"></textarea>
+        <textarea name="comment" cols="120" rows="10"></textarea>
         <div>
           <button class="button-tc" type="submit">
             <span class="cb">Post a comment</span>
@@ -57,5 +97,6 @@
         </div>
       </form>
     </div>
+    <!-- <a href="/delete_all/{{this_trail.id}}">delete</a> -->
   </body>
 </html>

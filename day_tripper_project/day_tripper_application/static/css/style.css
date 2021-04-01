@@ -4,16 +4,7 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
-/* body {
-  background-color: gray;
-  padding: 30px;
-} */
 /* ****HEADER**** */
-header {
-  /* background-color: gray; */
-  font-size: 30px;
-  width: 100%;
-}
 .title {
   text-align: left;
   font-size: 70px;
@@ -34,17 +25,16 @@ header {
   display: flex;
   padding: 20px;
   justify-content: space-evenly;
-  /* justify-content: flex-end; */
-  /* justify-content: center; */
-  /* align-items: is for vertical alignment */
 }
 .my-col {
+  display: flex;
   min-width: 100px;
   min-height: 200px;
+  flex-direction: column;
 }
 .error-box {
   margin-top: 150px;
-  color: white;
+  color: red;
   font-weight: bold;
 }
 /****** Tables ******/
@@ -63,9 +53,6 @@ th {
 .tab tr {
   background-color: white;
 }
-/* .tab tr:nth-child(even) {
-  background-color: #585757;
-} */
 .tab th {
   background-color: blanchedalmond;
 }
@@ -138,28 +125,18 @@ select {
   font-size: 16px;
 }
 .body-dash {
-  /* background-color: gray; */
   background: url("/static/img/DSC_0314.jpeg");
-  /* background-image: url("yhd_hero.jpg"); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
   padding: 30px;
 }
-/* body {
-  /* background-color: gray; */
-/* background: url("/static/img/yhd_hero.jpg"); */
-/* background-image: url("yhd_hero.jpg"); */
-/* background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  padding: 30px;
-} */
 #weather-box {
-  background-color: rgb(92, 91, 91);
+  background-color: blanchedalmond;
   font-weight: bold;
   font-size: 24px;
   resize: none;
+  color: #738042;
 }
 .body-detail {
   /* background-color: gray; */
@@ -169,15 +146,6 @@ select {
   background-size: 100% 100%;
   padding: 30px;
 }
-/* header {
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  border-radius: 25px;
-  border: 2px solid #73AD21;
-  font-size: 30px;
-  width: 100%;
-  padding: 20px;
-} */
 .site-header {
   background-color: blanchedalmond;
   border-radius: 10px;
@@ -202,12 +170,6 @@ select {
 }
 /* ############## Margins ###################### */
 
-/* trail title margin */
-.ttm {
-  margin: 150px;
-  margin-left: 750px;
-  margin-right: 750px;
-}
 /* post a comment font color */
 .cb {
   color: black;
@@ -225,37 +187,10 @@ select {
   font-weight: bolder;
   margin-left: 800px;
 }
-/* trail description box */
-.tdb {
-  background-color: white;
-  width: 300px;
-  border-radius: 10px;
-  border: 2px solid black;
-  padding: 50px;
-  margin: 20px;
-}
-/* Details and Description Box Flex */
-/* .ddb {
-  display: flex;
-  justify-content: center;
-} */
-/* Background of Details */
-.bgd {
-  background-color: white;
-  border-radius: 10px;
-  border: 2px solid black;
-}
-
 /* Comment Box Flex */
 .cbf {
   display: flex;
   justify-content: space-around;
-}
-
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 .mt {
   margin-top: 100px;
@@ -283,4 +218,46 @@ select {
 }
 .title-color {
   color: #738042;
+}
+.bgd {
+  color: #738042;
+  background-color: blanchedalmond;
+  border-radius: 10px;
+  border: 2px solid black;
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 15px;
+  margin-left: 60px;
+}
+/* Comment Box Flex */
+.cbf {
+  display: flex;
+  justify-content: space-around;
+}
+/* trail title margin */
+.ttm {
+  margin: 150px;
+  margin-left: 750px;
+  margin-right: 750px;
+}
+.comms {
+  color: #738042;
+  background-color: blanchedalmond;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+.cent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.error-box-comment {
+  margin-left: 400px;
+  color: red;
+  font-weight: bolder;
+  font-size: 30px;
+}
+.error-box-create-trip {
+  color: red;
+  font-weight: bold;
 }

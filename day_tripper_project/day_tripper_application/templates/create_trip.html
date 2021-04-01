@@ -23,15 +23,15 @@
       <div class="my-col">
         <h3>Recommended Food</h3>
         <textarea cols="30" rows="10">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti debitis voluptas sequi tenetur temporibus consequatur eius nulla nihil sapiente sed iusto exercitationem, ipsum, explicabo ipsa voluptate quisquam facere cum asperiores!
+          water, dehydrated foods, trail mix, nuts, bars, beef jerky, dried fruits, instant coffee, tea, sandwich supplies...
         </textarea>
         <h3>Recommended Gear</h3>
         <textarea cols="30" rows="10">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum hic nobis at exercitationem quod autem, incidunt est! Pariatur cupiditate, veritatis nostrum saepe maxime ad laudantium blanditiis iste consequatur ex facilis.
+          Backpack, boots, weather-appropriate clothing, first- aid, knife, multitool, emergency kit, watch, sunscreen, bug spray, sunglasses...
         </textarea>
       </div>
       <div class="my-col">
-        <!-- <div class="error-box">
+        <div class="error-box-create-trip">
           {% if messages %}
           <ul class="messages">
             {% for message in messages %}
@@ -41,7 +41,7 @@
             {% endfor %}
           </ul>
           {% endif %}
-        </div> -->
+        </div>
         <form action="/create" method="POST">
           {% csrf_token %}
           <div class="form-format form-test">

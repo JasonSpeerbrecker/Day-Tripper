@@ -17,12 +17,16 @@ urlpatterns = [
     path('register', views.register),
     path('login', views.login),
     path('logout', views.logout),
-    path('remove/<int:id>', views.remove),
     path('update/<int:id>', views.update_trip),
     path('create', views.create),
     path('cancel/<int:id>', views.cancel),
     path('join/<int:id>', views.join),
     path('post_comment/<int:id>', views.post_comment),
+    path('trip/delete/<int:id>', views.delete_trip),
+
+#### careful delete alls
+    path('delete_all/<int:id>', views.delete_all),
+    path('delete_all_trails', views.delete_all_trails),
 
     ######## Admin Routes #########
     # path('edit/<int:id>', views.update_trail),
