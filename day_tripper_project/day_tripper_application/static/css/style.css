@@ -51,6 +51,7 @@ header {
 .tab {
   border-collapse: collapse;
   min-width: 300px;
+  border-radius: 25px;
 }
 .tab td,
 th {
@@ -59,11 +60,14 @@ th {
   padding: 8px 15px;
   color: black;
 }
-.tab tr:nth-child(even) {
-  background-color: #585757;
+.tab tr {
+  background-color: white;
 }
-.tab th {
+/* .tab tr:nth-child(even) {
   background-color: #585757;
+} */
+.tab th {
+  background-color: blanchedalmond;
 }
 /****** Forms ******/
 form h1 {
@@ -133,18 +137,150 @@ select {
   margin-left: 10px;
   font-size: 16px;
 }
-body {
+.body-dash {
   /* background-color: gray; */
-  background: url("/static/img/yhd_hero.jpg");
+  background: url("/static/img/DSC_0314.jpeg");
   /* background-image: url("yhd_hero.jpg"); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
   padding: 30px;
 }
+/* body {
+  /* background-color: gray; */
+/* background: url("/static/img/yhd_hero.jpg"); */
+/* background-image: url("yhd_hero.jpg"); */
+/* background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding: 30px;
+} */
 #weather-box {
   background-color: rgb(92, 91, 91);
   font-weight: bold;
   font-size: 24px;
   resize: none;
+}
+.body-detail {
+  /* background-color: gray; */
+  background: url("/static/img/B6B17DEC-D1F4-4E12-BE7E-ED2188448FDA_1_105_c.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding: 30px;
+}
+/* header {
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  font-size: 30px;
+  width: 100%;
+  padding: 20px;
+} */
+.site-header {
+  background-color: blanchedalmond;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px;
+  padding: 15px;
+}
+.test-but {
+  color: rgb(255, 255, 255);
+  background-color: #738042;
+  text-decoration: none;
+  margin-top: 15px;
+  border: 2px solid #1b1b1b;
+  border-radius: 5px;
+  text-transform: uppercase;
+  padding: 5px 15px;
+  font-weight: bolder;
+  margin-left: 10px;
+  font-size: 16px;
+}
+/* ############## Margins ###################### */
+
+/* trail title margin */
+.ttm {
+  margin: 150px;
+  margin-left: 750px;
+  margin-right: 750px;
+}
+/* post a comment font color */
+.cb {
+  color: black;
+}
+/* trail post a comment button */
+.button-tc {
+  text-decoration: none;
+  margin-top: 15px;
+  color: white;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  text-transform: uppercase;
+  padding: 5px 15px;
+  font-weight: bolder;
+  margin-left: 800px;
+}
+/* trail description box */
+.tdb {
+  background-color: white;
+  width: 300px;
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 50px;
+  margin: 20px;
+}
+/* Details and Description Box Flex */
+/* .ddb {
+  display: flex;
+  justify-content: center;
+} */
+/* Background of Details */
+.bgd {
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+/* Comment Box Flex */
+.cbf {
+  display: flex;
+  justify-content: space-around;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mt {
+  margin-top: 100px;
+}
+.body-my-trips {
+  background: url("/static/img/yhd_hero.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding: 30px;
+}
+.body-create-trip {
+  background: url("/static/img/lake-pic.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding: 30px;
+}
+.body-create-trail {
+  background: url("/static/img/trees.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding: 30px;
+}
+.title-color {
+  color: #738042;
 }

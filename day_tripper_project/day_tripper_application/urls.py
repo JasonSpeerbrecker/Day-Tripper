@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
 
-    # Display Routes
+    ######## Display Routes #########
     path('', views.index),
     path('dashboard', views.display_dashboard),
     path('trip/new', views.display_make_new_trip),
@@ -13,7 +13,7 @@ urlpatterns = [
     path('trail/detail/<int:id>', views.display_trail_details),
     # path('test', views.test),
 
-    # Action Routes
+    ######## Action Routes #########
     path('register', views.register),
     path('login', views.login),
     path('logout', views.logout),
@@ -28,5 +28,6 @@ urlpatterns = [
     # path('edit/<int:id>', views.update_trail),
     path('new_trail', views.display_make_new_trail),
     path('create_trail', views.create_trail),
+    path('delete_trail/<int:id>', views.delete_trail),
 
 ]

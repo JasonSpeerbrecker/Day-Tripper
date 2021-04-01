@@ -19,6 +19,7 @@ def display_dashboard(request):
     context = {
         'this_user': User.objects.get(id=request.session['user_id']),
         'all_trails': Trail.objects.all(),
+        'all_trips': Trip.objects.all(),
     }
     return render(request, "dashboard_placeholder.html", context)
 
@@ -72,6 +73,7 @@ def display_trip_details(request, id):
       'this_trip': Trip.objects.get(id=id)
     }
     return render(request, "trip_details_placeholder.html", context)
+
 ######  Action Methods  ################################
 
 # Logic to create trip
@@ -149,6 +151,8 @@ def post_comment(request, id):
     )
     return redirect(f'/trail/detail/{id}')
 
+################ Login - Reg ###########################
+
 def register(request):
     # Validations
     errors = User.objects.reg_validator(request.POST)
@@ -212,7 +216,7 @@ def create_trail(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('/new')
+        return redirect('/new_trail')
     new_trail = Trail.objects.create(
         name = request.POST['name'],
         location = request.POST['location'],
@@ -231,5 +235,7 @@ def display_update_trail(request):
 def update_trail(request):
     pass
 
-def delete_trail(request):
-    pass
+def delete_trail(request, id):
+    delete_trail = Trail.objects.get(id=id)
+    delete_trail.delete()
+    return redirect('/dashboard')

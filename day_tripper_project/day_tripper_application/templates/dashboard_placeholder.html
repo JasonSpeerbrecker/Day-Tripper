@@ -7,67 +7,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard Placeholder</title>
     <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+    <!-- <img src="{% static 'img/imagename.jpg' %}" /> -->
   </head>
-  <body>
+
+  <body class="body-dash">
+    <!-- Table Header -->
+    <header class="site-header">
+      <h1>
+        <span style="color: #738042">Welcome, {{ this_user.first_name }}</span>
+      </h1>
+      <a class="test-but" href="/dashboard">Home</a>
+      <a class="test-but" href="/trip/my_trips">My Trips</a>
+      <a class="test-but" href="/trip/new">New Trip</a>
+      <a class="test-but" href="/new_trail">New Trail</a>
+      <a class="test-but" href="/logout">Log Out</a>
+    </header>
+    <!-- Trail Table -->
     <div class="row-container">
-      <div class="my-col">
-        <div>
-          <a class="test-but" href="/logout">Log Out</a>
-        </div>
-        <br />
-        <br />
-        <div>
-          <a class="test-but" href="/trip/my_trips">My Trips</a>
-        </div>
-        <br />
-        <br />
-        <div>
-          <a class="test-but" href="/dashboard">Home</a>
-        </div>
-        <br />
-        <br />
-        <div>
-          <a class="test-but" href="/trip/new">New Trip</a>
-        </div>
-        <br />
-        <br />
-        <div>
-          <a class="test-but" href="/new_trail">New Trail</a>
-        </div>
-        <br />
-        <br />
-        <div>
-          <a class="test-but" href="/test">test</a>
-        </div>
+      <div class="my-col mt">
+        <h1><span style="color: white">Trails</span></h1>
+        <table class="tab">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Difficulty</th>
+              <th>Distance</th>
+              <th>Elevation Change</th>
+              <th>Route Type</th>
+              <th>Rating</th>
+              <th>Description</th>
+              <th>Trail Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for trail in all_trails %}
+            <tr>
+              <td>{{trail.name}}</td>
+              <td>{{trail.location}}</td>
+              <td>{{trail.difficulty}}</td>
+              <td>{{trail.distance}}</td>
+              <td>{{trail.elevation_change}}</td>
+              <td>{{trail.route_type}}</td>
+              <td>{{trail.rating}}</td>
+              <td>{{trail.description}}</td>
+              <td><a href="/trail/detail/{{trail.id}}"> View </a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
+    <!-- My Trips Table -->
     <div class="row-container">
       <div class="my-col">
-        {% for trail in all_trails %}
-        <a href="/trail/detail/{{trail.id}}">{{trail.name}}</a>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="row-container">
-      <div class="my-col">
-        <h1>trips I created</h1>
-        {% for trip in this_user.trips_created.all%}
-        <a href="/trip/detail/{{trip.id}}">{{trip.trip_name}}</a>
-        {% for trail in trip.trails.all%}
-        <p>{{trail.name}}</p>
-        <br />
-        <br />
-        {% endfor %}
-        <!--  -->
-        {% endfor %}
-      </div>
-    </div>
-    <div class="row-container">
-      <div class="my-col">
-        <h1>trips I joined</h1>
-        {% for trip in this_user.trips_joined.all%}
-        <a href="/trip/detail/{{trip.id}}">{{trip.trip_name}}</a>
-        {% endfor %}
+        <h1><span style="color: white">My Trips</span></h1>
+        <table class="tab">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Food List</th>
+              <th>Gear Check</th>
+              <th>Trip Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for trip in this_user.trips_created.all %}
+            <tr>
+              <td>{{trip.trip_name}}</td>
+              <td>{{trip.trip_date}}</td>
+              <td>{{trip.food_list}}</td>
+              <td>{{trip.gear_check}}</td>
+              <td><a href="/trip/detail/{{trip.id}}"> View </a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
   </body>

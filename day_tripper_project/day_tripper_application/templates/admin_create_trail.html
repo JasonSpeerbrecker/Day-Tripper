@@ -8,7 +8,7 @@
     <title>Create Trail</title>
     <link rel="stylesheet" href="{% static '/css/style.css' %}" />
   </head>
-  <body>
+  <body class="body-create-trail">
     <header>
       <nav class="top-nav test-nav">
         <div>
@@ -21,7 +21,7 @@
     </header>
     <div class="row-container">
       <div class="my-col">
-        <div class="error-box">
+        <!-- <div class="error-box">
           {% if messages %}
           <ul class="messages">
             {% for message in messages %}
@@ -31,7 +31,7 @@
             {% endfor %}
           </ul>
           {% endif %}
-        </div>
+        </div> -->
         <form action="/create_trail" method="POST">
           {% csrf_token %}
           <div class="form-format form-test">
@@ -63,7 +63,7 @@
               rows="7"
             ></textarea>
           </div>
-          <a href="/trip/my_trips" class="test-but">Cancel</a>
+          <a href="/dashboard" class="test-but">Cancel</a>
           <button class="test-but" type="submit">Submit</button>
         </form>
       </div>
