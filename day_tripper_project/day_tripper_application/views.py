@@ -34,16 +34,6 @@ def display_trail_details(request, id):
     }
     return render(request, "trail_details_placeholder.html", context)
 
-# table listing all "my trips"
-# still need to add this page and have it separate created trips and joined trips
-def display_my_trips(request):
-    if 'user_id' not in request.session:
-        return redirect('/')
-    context = {
-        'this_user': User.objects.get(id=request.session['user_id'])
-    }
-    return render(request, "my_trips_placeholder.html", context)
-
 # form page to create a trip itinerary
 def display_make_new_trip(request):
     if 'user_id' not in request.session:
@@ -93,7 +83,7 @@ def create(request):
         creator = user,
     )
     new_trip.trails.add(add_trail)
-    return redirect('/trip/my_trips')
+    return redirect('/dashboard')
 
 # Logic to update trip
 def update_trip(request, id):
@@ -107,7 +97,7 @@ def update_trip(request, id):
     if request.POST['trip_name'] != this_trip.trip_name:
         this_trip.trip_name=request.POST['trip_name']
         this_trip.save()
-    if this_trail != this_trip.trail:
+    if this_trail != this_trip.trails:
         this_trip.trail=this_trail
         this_trip.save()
     if request.POST['trip_date'] != this_trip.trip_date:
@@ -119,21 +109,21 @@ def update_trip(request, id):
     if request.POST['gear_check'] != this_trip.gear_check:
         this_trip.gear_check=request.POST['gear_check']
         this_trip.save()
-    return redirect('/trip/my_trips')
+    return redirect('/dashboard')
 # 
 # Logic to cancel(un-join) someone elses trip (does not delete the trip)
 def cancel(request, id):
     remove_trip = Trip.objects.get(id=id)
     remove_user = request.session['user_id']
     remove_trip.joined.remove(remove_user)
-    return redirect('/trip/my_trips')
+    return redirect('/dashboard')
 
 # Logic to join someone elses trip
 def join(request, id):
     join_trip = Trip.objects.get(id=id)
     join_user = request.session['user_id']
     join_trip.joined.add(join_user)
-    return redirect('/trip/my_trips')
+    return redirect('/dashboard')
 
 # Logic to delete a trip (can only delete trips you created)
 def delete_trip(request, id):

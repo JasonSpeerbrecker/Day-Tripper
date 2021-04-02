@@ -12,14 +12,28 @@
 
   <body class="body-dash">
     <!-- Table Header -->
-    <header class="site-header">
+    <!-- <header class="site-header">
       <h1>
-        <span style="color: #738042">Welcome, {{ this_user.first_name }}</span>
+        <span style="color: #738042">Welcome, {#{{ this_user.first_name }}#}</span>
       </h1>
       <a class="test-but" href="/dashboard">Home</a>
       <a class="test-but" href="/trip/new">New Trip</a>
       <a class="test-but" href="/new_trail">New Trail</a>
       <a class="test-but" href="/logout">Log Out</a>
+    </header> -->
+    <header class="site-header">
+      <h1 class="title-color welcome">Welcome, {{this_user.first_name}}!</h1>
+      <img
+        class="logo-shadow"
+        src="/static/img/mount_city.jpg"
+        alt="mountain city"
+        height="75px"
+        width="150px"
+      />
+      <a class="button3 button1" href="/dashboard"><span>Home</span></a>
+      <a class="button3 button1" href="/trip/new"><span>New Trip</span></a>
+      <a class="button3 button1" href="/new_trail"><span>New Trail</span></a>
+      <a class="button3 button1" href="/logout"><span>Log Out</span></a>
     </header>
     <!-- Trail Table -->
     <div class="row-container">
@@ -68,7 +82,7 @@
               <th>Date</th>
               <th>Food List</th>
               <th>Gear Check</th>
-              <th>Trip Details</th>
+              <th>Trip Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -80,14 +94,70 @@
               <td>{{trip.gear_check}}</td>
               <td>
                 <a href="/trip/detail/{{trip.id}}"> View </a> |
-                <a href="/trip/delete/{{trip.id}}"> Delete </a>
+                <a href="/trip/delete/{{trip.id}}"> Delete </a> |
+                <a href="/trip/update/{{trip.id}}"> Update </a>
               </td>
             </tr>
+            {% endfor %}
+            <!--  -->
+            {% for trip in all_trips %}
+            <!--  -->
+            {% if this_user in trip.joined.all %}
+            <tr>
+              <td>{{trip.trip_name}}</td>
+              <td>{{trip.trip_date}}</td>
+              <td>{{trip.food_list}}</td>
+              <td>{{trip.gear_check}}</td>
+              <td>
+                <a href="/trip/detail/{{trip.id}}"> View </a> |
+                <a href="/cancel/{{trip.id}}"> Cancel </a>
+              </td>
+            </tr>
+            {% endif %}
+            <!--  -->
             {% endfor %}
           </tbody>
         </table>
       </div>
     </div>
-    <a href="/delete_all_trails">delete all trails</a>
+    <div class="row-container">
+      <div class="my-col">
+        <h1><span style="color: white">Other People's Trips</span></h1>
+        <table class="tab">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Food List</th>
+              <th>Gear Check</th>
+              <th>Trip Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for trip in all_trips %}
+            <!--  -->
+            {% if this_user != trip.creator %}
+            <!--  -->
+            {% if this_user not in trip.joined.all %}
+            <tr>
+              <td>{{trip.trip_name}}</td>
+              <td>{{trip.trip_date}}</td>
+              <td>{{trip.food_list}}</td>
+              <td>{{trip.gear_check}}</td>
+              <td>
+                <a href="/trip/detail/{{trip.id}}"> View </a> |
+                <a href="/join/{{trip.id}}"> Join Trip </a>
+              </td>
+            </tr>
+            {% endif %}
+            <!--  -->
+            {% endif %}
+            <!--  -->
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- <a href="/delete_all_trails">delete all trails</a> -->
   </body>
 </html>

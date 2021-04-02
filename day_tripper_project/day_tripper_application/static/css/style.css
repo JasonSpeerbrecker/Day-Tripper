@@ -5,6 +5,10 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 /* ****HEADER**** */
+header {
+  font-size: 30px;
+  width: 100%;
+}
 .title {
   text-align: left;
   font-size: 70px;
@@ -131,6 +135,13 @@ select {
   background-size: 100% 100%;
   padding: 30px;
 }
+.body-login {
+  background: url("/static/img/yhd_hero.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding: 30px;
+}
 #weather-box {
   background-color: blanchedalmond;
   font-weight: bold;
@@ -146,7 +157,7 @@ select {
   background-size: 100% 100%;
   padding: 30px;
 }
-.site-header {
+/* .site-header {
   background-color: blanchedalmond;
   border-radius: 10px;
   display: flex;
@@ -154,6 +165,19 @@ select {
   align-items: center;
   margin: 20px;
   padding: 15px;
+} */
+.site-header {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(255, 235, 205),
+    rgb(236, 203, 153)
+  );
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 15px;
+  padding-right: 25px;
 }
 .test-but {
   color: rgb(255, 255, 255);
@@ -171,16 +195,20 @@ select {
 /* ############## Margins ###################### */
 
 /* post a comment font color */
+.bg-almond {
+  background-color: blanchedalmond;
+}
 .cb {
-  color: black;
+  color: #738042;
+  background-color: blanchedalmond;
 }
 /* trail post a comment button */
 .button-tc {
   text-decoration: none;
   margin-top: 15px;
   color: white;
-  background-color: white;
-  border: 2px solid white;
+  background-color: blanchedalmond;
+  border: 2px solid blanchedalmond;
   border-radius: 5px;
   text-transform: uppercase;
   padding: 5px 15px;
@@ -193,7 +221,7 @@ select {
   justify-content: space-around;
 }
 .mt {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .body-my-trips {
   background: url("/static/img/yhd_hero.jpg");
@@ -211,6 +239,13 @@ select {
 }
 .body-create-trail {
   background: url("/static/img/trees.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding: 30px;
+}
+.body-trips-details {
+  background: url("/static/img/BA79F5A9-7A88-4C82-8B02-7E81966A81E0_1_105_c.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
@@ -260,4 +295,162 @@ select {
 .error-box-create-trip {
   color: red;
   font-weight: bold;
+}
+.bgd-trip {
+  /* background-color: white; */
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(255, 235, 205),
+    rgb(236, 203, 153)
+  );
+  border-radius: 10px;
+  border: 2px solid black;
+}
+.trip-marg {
+  margin: 75px;
+  margin-left: 925px;
+  margin-right: 950px;
+  padding: 50px;
+  min-width: 700px;
+  /* padding-left: 80px;
+  padding-right: 70px; */
+}
+/* button shadows */
+.button1 {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.button3 {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #738042;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 28px;
+  padding: 12px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.button3 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button3 span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button3:hover span {
+  padding-right: 25px;
+}
+.button3:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+/* shadow for logo */
+.logo-shadow {
+  box-shadow: 8px 8px 5px rgb(195, 178, 152);
+}
+/* shadow for welcome name */
+.welcome {
+  text-shadow: 3px 3px rgb(195, 178, 152);
+}
+.logout-btn {
+  text-align: right;
+  font-size: 25px;
+  border: 4px;
+}
+.test-nav-ct {
+  margin-bottom: 25px;
+  margin-right: 50px;
+}
+.pd-ct {
+  margin-top: 250px;
+  margin-right: 150px;
+  margin-left: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.bgd-ct {
+  background-image: linear-gradient(
+    to top left,
+    rgb(63, 39, 4),
+    rgb(100, 65, 13)
+  );
+  /* background-color: rgb(100, 65, 13); */
+  border-radius: 10px;
+  border: 1px solid rgb(63, 39, 4);
+}
+.bgd-ctt {
+  background-image: linear-gradient(
+    to top left,
+    rgb(63, 39, 4),
+    rgb(100, 65, 13)
+  );
+  /* background-color: rgb(100, 65, 13); */
+  border-radius: 10px;
+  border: 1px solid rgb(63, 39, 4);
+}
+.form-ct {
+  background-image: linear-gradient(
+    to top left,
+    rgb(63, 39, 4),
+    rgb(100, 65, 13)
+  );
+  /* background-color: rgb(100, 65, 13); */
+  padding: 25px;
+  border-radius: 10px;
+  margin-right: 200px;
+  border: 1px solid rgb(63, 39, 4);
+}
+.flex {
+  display: flex;
+  justify-content: center;
+}
+.form-ctrip {
+  background-color: rgb(100, 65, 13);
+  padding: 25px;
+  border-radius: 10px;
+  margin-right: px;
+  min-width: 100px;
+  min-height: 200px;
+  margin-top: 150px;
+  margin-bottom: 250px;
+  border: 1px solid rgb(63, 39, 4);
+}
+.form-ctripp {
+  background-image: linear-gradient(
+    to top left,
+    rgb(63, 39, 4),
+    rgb(100, 65, 13)
+  );
+  padding: 25px;
+  border-radius: 10px;
+  margin-right: 200px;
+  margin-top: 50px;
+  border: 1px solid rgb(63, 39, 4);
+}
+.ct-but {
+  color: rgb(255, 255, 255);
+  background-color: #738042;
+  text-decoration: none;
+  margin-top: 15px;
+  border: 2px solid #1b1b1b;
+  border-radius: 5px;
+  text-transform: uppercase;
+  padding: 5px 15px;
+  font-weight: bolder;
+  margin-left: 10px;
+  font-size: 16px;
+  border: 1px solid rgb(255, 128, 9);
+  box-shadow: 3px 3px 2px rgb(172, 87, 9);
 }

@@ -8,12 +8,67 @@
     <title>My Trails</title>
     <link rel="stylesheet" href="{% static '/css/style.css' %}" />
   </head>
-  <body>
-    <h1>YOU MADE IT TO TRIP DETAILS PAGE</h1>
-    <h1>for {{this_trip.name}}</h1>
-    <h1>Congrats... now make the page look right</h1>
-    <div>
+  <body class="body-trips-details">
+    <!-- <header class="site-header">
+      <h1>
+        <span style="color: #738042">Welcome, {#{{ this_user.first_name }}#}</span>
+      </h1>
       <a class="test-but" href="/dashboard">Home</a>
+      <a class="test-but" href="/trip/new">New Trip</a>
+      <a class="test-but" href="/new_trail">New Trail</a>
+      <a class="test-but" href="/logout">Log Out</a>
+    </header> -->
+    <header class="site-header">
+      <h1 class="title-color welcome">Welcome, {{this_user.first_name}}!</h1>
+      <img
+        class="logo-shadow"
+        src="/static/img/mount_city.jpg"
+        alt="mountain city"
+        height="75px"
+        width="150px"
+      />
+      <a class="button3 button1" href="/dashboard"><span>Home</span></a>
+      <a class="button3 button1" href="/trip/new"><span>New Trip</span></a>
+      <a class="button3 button1" href="/new_trail"><span>New Trail</span></a>
+      <a class="button3 button1" href="/logout"><span>Log Out</span></a>
+    </header>
+
+    <div class="row-container">
+      <div class="my-col">
+        <div class="cent">
+          <!-- <background for Trip and trip details> -->
+          <div class="bgd">
+            <h1>Trip Name: {{this_trip.trip_name}}</h1>
+          </div>
+
+          <!-- Trip Details -->
+          <div class="bgd">
+            <h1>Trip Date: {{this_trip.trip_date}}</h1>
+            <br />
+            <h1>Grub: {{this_trip.food_list}}</h1>
+            <br />
+            <h1>Gear: {{this_trip.gear_check}}</h1>
+          </div>
+
+          <!-- Trail Details -->
+
+          {% for trail in this_trip.trails.all %}
+          <div class="bgd">
+            <h1>Trails Conquered: {{trail.name}}</h1>
+            <br />
+            <h1>Location: {{trail.location}}</h1>
+          </div>
+          {% endfor %}
+
+          <!-- Users Joined -->
+          <div class="bgd">
+            <h1>Hikers joined:</h1>
+            {% for joined in this_trip.joined.all %}
+            <h2>{{joined.first_name}} {{joined.last_name}}</h2>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

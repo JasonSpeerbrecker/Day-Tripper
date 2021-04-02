@@ -9,28 +9,50 @@
     <link rel="stylesheet" href="{% static '/css/style.css' %}" />
   </head>
   <body class="body-create-trip">
-    <header>
-      <nav class="top-nav test-nav">
-        <div>
-          <h1 class="title">Hello {{this_user.first_name}}! Create a trip!</h1>
-        </div>
-        <div>
-          <a href="/logout">Log Out</a>
-        </div>
-      </nav>
+        <!-- <header class="site-header">
+      <h1>
+        <span style="color: #738042">Welcome, {#{{ this_user.first_name }}#}</span>
+      </h1>
+      <a class="test-but" href="/dashboard">Home</a>
+      <a class="test-but" href="/trip/new">New Trip</a>
+      <a class="test-but" href="/new_trail">New Trail</a>
+      <a class="test-but" href="/logout">Log Out</a>
+    </header> -->
+    <header class="site-header">
+      <h1 class="title-color welcome">Welcome, {{this_user.first_name}}!</h1>
+      <img
+        class="logo-shadow"
+        src="/static/img/mount_city.jpg"
+        alt="mountain city"
+        height="75px"
+        width="150px"
+      />
+      <a class="button3 button1" href="/dashboard"><span>Home</span></a>
+      <a class="button3 button1" href="/trip/new"><span>New Trip</span></a>
+      <a class="button3 button1" href="/new_trail"><span>New Trail</span></a>
+      <a class="button3 button1" href="/logout"><span>Log Out</span></a>
     </header>
-    <div class="row-container">
-      <div class="my-col">
-        <h3>Recommended Food</h3>
-        <textarea cols="30" rows="10">
-          water, dehydrated foods, trail mix, nuts, bars, beef jerky, dried fruits, instant coffee, tea, sandwich supplies...
-        </textarea>
-        <h3>Recommended Gear</h3>
-        <textarea cols="30" rows="10">
-          Backpack, boots, weather-appropriate clothing, first- aid, knife, multitool, emergency kit, watch, sunscreen, bug spray, sunglasses...
-        </textarea>
+    <div class="row-container flex">
+      <div class="m-trip pr-trip">
+        <div>
+          <h1 class="title bgd-ctt form-ctripp" style="color: rgb(255, 128, 9)">
+            Create a Trip!
+          </h1>
+        </div>
+        <div class="form-ctripp">
+          <h3 style="color: rgb(255, 128, 9)">Recommended Food</h3>
+          <textarea id="weather-box" cols="30" rows="6">
+    water, dehydrated foods, trail mix, nuts, bars, beef jerky, dried fruits, instant coffee, tea, sandwich supplies...
+  </textarea
+          >
+          <h3 style="color: rgb(255, 128, 9)">Recommended Gear</h3>
+          <textarea id="weather-box" cols="30" rows="6">
+    Backpack, boots, weather-appropriate clothing, first- aid, knife, multitool, emergency kit, watch, sunscreen, bug spray, sunglasses...
+  </textarea
+          >
+        </div>
       </div>
-      <div class="my-col">
+      <div class="my-col pl-trip">
         <div class="error-box-create-trip">
           {% if messages %}
           <ul class="messages">
@@ -42,27 +64,37 @@
           </ul>
           {% endif %}
         </div>
-        <form action="/create" method="POST">
+        <form class="form-ctripp" action="/create" method="POST">
           {% csrf_token %}
           <div class="form-format form-test">
-            <label for="trip_name">Name of Trip: </label>
+            <label for="trip_name" style="color: rgb(255, 128, 9)"
+              >Name of Trip:
+            </label>
             <input id="trip_name" type="text" name="trip_name" />
-            <label for="trail">Select a Trail: </label>
+            <label for="trail" style="color: rgb(255, 128, 9)"
+              >Select a Trail:
+            </label>
             <select name="trail" id="trail">
               {% for trail in all_trails %}
               <option value="{{trail.id}}">{{trail.name}}</option>
               {% endfor %}
             </select>
-            <label for="trip_date">Trip Date: </label>
+            <label for="trip_date" style="color: rgb(255, 128, 9)"
+              >Trip Date:
+            </label>
             <input id="trip_date" type="date" name="trip_date" />
-            <label for="food_list">Food List: </label>
+            <label for="food_list" style="color: rgb(255, 128, 9)"
+              >Food List:
+            </label>
             <textarea
               id="food_list"
               name="food_list"
               cols="30"
               rows="7"
             ></textarea>
-            <label for="gear_check">Gear Check: </label>
+            <label for="gear_check" style="color: rgb(255, 128, 9)"
+              >Gear Check:
+            </label>
             <textarea
               id="gear_check"
               name="gear_check"
@@ -70,8 +102,8 @@
               rows="7"
             ></textarea>
           </div>
-          <a href="/dashboard" class="test-but">Cancel</a>
-          <button class="test-but" type="submit">Submit</button>
+          <a href="/dashboard" class="ct-but">Cancel</a>
+          <button class="ct-but" type="submit">Submit</button>
         </form>
       </div>
     </div>

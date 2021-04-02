@@ -46,6 +46,9 @@ class TripManager(models.Manager):
         errors = {}
         if len(postData['trip_name']) < 2:
             errors['trip_name'] = "Trip name must be greater than 2 characters!"
+        if not postData['trip_date']:
+            errors['trip_date'] = "Must include trip date!"
+            return errors
         date_time_obj = datetime.datetime.strptime(postData['trip_date'], '%Y-%m-%d')
         if date_time_obj < datetime.datetime.today():
             errors['trip_date'] = "Trip date must be in the future!"

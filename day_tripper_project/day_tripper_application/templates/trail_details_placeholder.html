@@ -9,19 +9,29 @@
     <link rel="stylesheet" href="{% static '/css/style.css' %}" />
   </head>
   <body class="body-detail">
+    <!-- Table Header -->
+    <!-- <header class="site-header">
+      <h1>
+        <span style="color: #738042">Welcome, {#{{ this_user.first_name }}#}</span>
+      </h1>
+      <a class="test-but" href="/dashboard">Home</a>
+      <a class="test-but" href="/trip/new">New Trip</a>
+      <a class="test-but" href="/new_trail">New Trail</a>
+      <a class="test-but" href="/logout">Log Out</a>
+    </header> -->
     <header class="site-header">
-      <h1 class="title-color">Welcome, {{this_user.first_name}}!</h1>
+      <h1 class="title-color welcome">Welcome, {{this_user.first_name}}!</h1>
       <img
+        class="logo-shadow"
         src="/static/img/mount_city.jpg"
         alt="mountain city"
         height="75px"
         width="150px"
       />
-      <a class="test-but" href="/dashboard">Home</a>
-      <a class="test-but" href="/trip/my_trips">My Trips</a>
-      <a class="test-but" href="/trip/new">New Trip</a>
-      <a class="test-but" href="/new_trail">New Trail</a>
-      <a class="test-but" href="/logout">Log Out</a>
+      <a class="button3 button1" href="/dashboard"><span>Home</span></a>
+      <a class="button3 button1" href="/trip/new"><span>New Trip</span></a>
+      <a class="button3 button1" href="/new_trail"><span>New Trail</span></a>
+      <a class="button3 button1" href="/logout"><span>Log Out</span></a>
     </header>
 
     <div class="row-container">
@@ -61,9 +71,9 @@
 
           {% for comment in this_trail.trail_comments.all %}
           <div>
-            <textarea class="comms" cols="60" rows="3">
+            <textarea class="comms" cols="60" rows="4">
               {{comment.user.first_name}} {{comment.user.last_name}} {{comment.created_at}} &#013;&#010;
-    {{comment.comment}}}</textarea
+    {{comment.comment}}</textarea
             >
           </div>
           {% endfor %}
@@ -89,7 +99,12 @@
         method="POST"
       >
         {% csrf_token %}
-        <textarea name="comment" cols="120" rows="10"></textarea>
+        <textarea
+          class="bg-almond"
+          name="comment"
+          cols="120"
+          rows="10"
+        ></textarea>
         <div>
           <button class="button-tc" type="submit">
             <span class="cb">Post a comment</span>

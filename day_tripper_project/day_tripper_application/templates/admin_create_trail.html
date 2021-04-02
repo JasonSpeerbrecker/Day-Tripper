@@ -9,19 +9,32 @@
     <link rel="stylesheet" href="{% static '/css/style.css' %}" />
   </head>
   <body class="body-create-trail">
-    <header>
-      <nav class="top-nav test-nav">
-        <div>
-          <h1 class="title">Create a trail!</h1>
-        </div>
-        <div>
-          <a href="/logout">Log Out</a>
-        </div>
-      </nav>
+    <!-- <header class="site-header">
+      <h1>
+        <span style="color: #738042">Welcome, {#{{ this_user.first_name }}#}</span>
+      </h1>
+      <a class="test-but" href="/dashboard">Home</a>
+      <a class="test-but" href="/trip/new">New Trip</a>
+      <a class="test-but" href="/new_trail">New Trail</a>
+      <a class="test-but" href="/logout">Log Out</a>
+    </header> -->
+    <header class="site-header">
+      <h1 class="title-color welcome">Welcome, {{this_user.first_name}}!</h1>
+      <img
+        class="logo-shadow"
+        src="/static/img/mount_city.jpg"
+        alt="mountain city"
+        height="75px"
+        width="150px"
+      />
+      <a class="button3 button1" href="/dashboard"><span>Home</span></a>
+      <a class="button3 button1" href="/trip/new"><span>New Trip</span></a>
+      <a class="button3 button1" href="/new_trail"><span>New Trail</span></a>
+      <a class="button3 button1" href="/logout"><span>Log Out</span></a>
     </header>
     <div class="row-container">
       <div class="my-col">
-        <!-- <div class="error-box">
+        <div class="error-box-comment">
           {% if messages %}
           <ul class="messages">
             {% for message in messages %}
@@ -31,41 +44,68 @@
             {% endfor %}
           </ul>
           {% endif %}
-        </div> -->
-        <form action="/create_trail" method="POST">
-          {% csrf_token %}
-          <div class="form-format form-test">
-            <label for="name">Trail Name</label>
-            <input id="name" type="text" name="name" />
-            <label for="location">Trail Location</label>
-            <input id="location" type="text" name="location" />
-            <label for="difficulty">Trail Difficulty</label>
-            <input id="difficulty" type="text" name="difficulty" />
-            <label for="distance">Trail Distance</label>
-            <input id="distance" type="text" name="distance" />
-            <label for="elevation_change">Trail Elevation Change</label>
-            <input id="elevation_change" type="text" name="elevation_change" />
-            <label for="route_type">Trail Route Type</label>
-            <input id="route_type" type="text" name="route_type" />
-            <label for="rating">Select a Rating</label>
-            <select name="rating" id="rating">
-              <option value="1">&#9733;</option>
-              <option value="2">&#9733;&#9733;</option>
-              <option value="3">&#9733;&#9733;&#9733;</option>
-              <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
-              <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
-            </select>
-            <label for="description">Description</label>
-            <textarea
-              id="description"
-              name="description"
-              cols="30"
-              rows="7"
-            ></textarea>
+        </div>
+        <div class="flex">
+          <div>
+            <h1 class="title bgd-ct pd-ct" style="color: rgb(255, 128, 9)">
+              Create a Trail!
+            </h1>
           </div>
-          <a href="/dashboard" class="test-but">Cancel</a>
-          <button class="test-but" type="submit">Submit</button>
-        </form>
+          <form class="form-ct" action="/create_trail" method="POST">
+            {% csrf_token %}
+            <div class="form-format form-test">
+              <label for="name" style="color: rgb(255, 128, 9)"
+                >Trail Name</label
+              >
+              <input id="name" type="text" name="name" />
+              <label for="location" style="color: rgb(255, 128, 9)"
+                >Trail Location</label
+              >
+              <input id="location" type="text" name="location" />
+              <label for="difficulty" style="color: rgb(255, 128, 9)"
+                >Trail Difficulty</label
+              >
+              <input id="difficulty" type="text" name="difficulty" />
+              <label for="distance" style="color: rgb(255, 128, 9)"
+                >Trail Distance</label
+              >
+              <input id="distance" type="text" name="distance" />
+              <label for="elevation_change" style="color: rgb(255, 128, 9)"
+                >Trail Elevation</label
+              >
+              <input
+                id="elevation_change"
+                type="text"
+                name="elevation_change"
+              />
+              <label for="route_type" style="color: rgb(255, 128, 9)"
+                >Trail Route Type</label
+              >
+              <input id="route_type" type="text" name="route_type" />
+              <label for="rating" style="color: rgb(255, 128, 9)"
+                >Select a Rating</label
+              >
+              <select name="rating" id="rating">
+                <option value="1">&#9733;</option>
+                <option value="2">&#9733;&#9733;</option>
+                <option value="3">&#9733;&#9733;&#9733;</option>
+                <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
+                <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+              </select>
+              <label for="description" style="color: rgb(255, 128, 9)"
+                >Description</label
+              >
+              <textarea
+                id="description"
+                name="description"
+                cols="30"
+                rows="7"
+              ></textarea>
+            </div>
+            <a href="/dashboard" class="ct-but">Cancel</a>
+            <button class="ct-but" type="submit">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
   </body>
